@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="apple-touch-icon" href="/favicon.svg" />
+<title>Book Your Free Leak Audit | OpsHeyday</title>
+<meta name="description" content="30-minute free leak audit for personal-injury firms. We'll calculate your exact intake leak on a screen-share. No pitch." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  body { font-family: 'Inter', system-ui, sans-serif; background: linear-gradient(to bottom, #fafaf7 0%, #f5f3ee 100%); color: #1a2332; -webkit-font-smoothing: antialiased; min-height: 100vh; }
+  .serif { font-family: 'Fraunces', Georgia, serif; }
+  h1, h2 { color: #0a1628; font-family: 'Fraunces', Georgia, serif; }
+  .gradient-text { background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .gold-text { background: linear-gradient(135deg, #b8860b 0%, #9c7505 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .btn-gold { background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%); color: #fff; transition: all 0.3s ease; box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3); }
+  .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(212, 175, 55, 0.5); }
+  input, select, textarea { background: #ffffff; border: 1px solid #cbd5e1; border-radius: 0.5rem; padding: 0.75rem 1rem; width: 100%; font-size: 0.95rem; color: #0a1628; transition: all 0.2s; }
+  input:focus, select:focus, textarea:focus { outline: none; border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1); }
+  label { display: block; font-size: 0.875rem; font-weight: 600; color: #1a2332; margin-bottom: 0.4rem; }
+  .field { margin-bottom: 1.25rem; }
+  .form-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 1.25rem; box-shadow: 0 4px 24px rgba(15, 23, 42, 0.06); }
+</style>
+</head>
+<body class="py-12 px-6">
+
+<nav class="max-w-5xl mx-auto mb-10 flex items-center justify-between">
+  <a href="/" class="flex items-center gap-2">
+    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center">
+      <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+    </div>
+    <span class="font-bold text-lg tracking-tight text-[#0a1628]">OpsHeyday</span>
+  </a>
+  <a href="/" class="text-sm text-slate-600 hover:text-[#0a1628] transition">← Back</a>
+</nav>
+
+<div class="max-w-2xl mx-auto">
+
+<header class="text-center mb-10">
+  <p class="text-xs uppercase tracking-[0.2em] text-blue-700 mb-3">Free 30-Min Leak Audit</p>
+  <h1 class="serif text-4xl lg:text-5xl font-bold leading-[1.05] mb-5">Calculate your firm's <span class="gold-text">exact intake leak.</span></h1>
+  <p class="text-lg text-slate-700 leading-relaxed max-w-xl mx-auto">Tell me a few things about your firm. I'll send back a 30-minute screen-share with your real ROI number — even if we never work together.</p>
+</header>
+
+<div class="form-card p-8 lg:p-10">
+<form name="audit" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="/thanks.html">
+  <input type="hidden" name="form-name" value="audit" />
+  <p class="hidden"><label>Don't fill this out: <input name="bot-field" /></label></p>
+
+  <div class="grid sm:grid-cols-2 gap-4">
+    <div class="field">
+      <label for="name">Your name *</label>
+      <input type="text" id="name" name="name" required placeholder="the OpsHeyday team" />
+    </div>
+    <div class="field">
+      <label for="firm">Firm name *</label>
+      <input type="text" id="firm" name="firm" required placeholder="Smith & Jones PI" />
+    </div>
+  </div>
+
+  <div class="grid sm:grid-cols-2 gap-4">
+    <div class="field">
+      <label for="email">Email *</label>
+      <input type="email" id="email" name="email" required placeholder="you@firm.com" />
+    </div>
+    <div class="field">
+      <label for="phone">Phone *</label>
+      <input type="tel" id="phone" name="phone" required placeholder="(555) 555-5555" />
+    </div>
+  </div>
+
+  <div class="grid sm:grid-cols-2 gap-4">
+    <div class="field">
+      <label for="attorneys">Number of attorneys *</label>
+      <select id="attorneys" name="attorneys" required>
+        <option value="">Select...</option>
+        <option value="solo">Solo (just me)</option>
+        <option value="2-3">2–3 attorneys</option>
+        <option value="4-5">4–5 attorneys</option>
+        <option value="6-10">6–10 attorneys</option>
+        <option value="10+">10+ attorneys</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="calls">New-client calls per month *</label>
+      <select id="calls" name="calls_per_month" required>
+        <option value="">Select...</option>
+        <option value="0-25">0–25</option>
+        <option value="25-50">25–50</option>
+        <option value="50-100">50–100</option>
+        <option value="100-200">100–200</option>
+        <option value="200+">200+</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="field">
+    <label for="case_value">Average attorney fee per signed case *</label>
+    <select id="case_value" name="avg_case_value" required>
+      <option value="">Select...</option>
+      <option value="under-10k">Under $10,000</option>
+      <option value="10k-20k">$10,000–$20,000</option>
+      <option value="20k-35k">$20,000–$35,000</option>
+      <option value="35k-75k">$35,000–$75,000</option>
+      <option value="75k+">$75,000+</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <label for="after_hours">After-hours coverage — what happens when a prospect calls at 9pm? *</label>
+    <select id="after_hours" name="after_hours" required>
+      <option value="">Select...</option>
+      <option value="voicemail">Voicemail</option>
+      <option value="answering-service">Generic answering service</option>
+      <option value="my-cell">My personal cell</option>
+      <option value="dedicated-receptionist">Dedicated after-hours receptionist</option>
+      <option value="other">Other / Not sure</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <label for="biggest_pain">What's the #1 thing you wish your intake did better?</label>
+    <textarea id="biggest_pain" name="biggest_pain" rows="3" placeholder="Optional — but answer here and I'll prep specifically for it before the call."></textarea>
+  </div>
+
+  <div class="field">
+    <label for="preferred_time">Preferred days/times for a 30-min screen-share *</label>
+    <input type="text" id="preferred_time" name="preferred_time" required placeholder="e.g., Tuesday or Thursday afternoons, ET" />
+  </div>
+
+  <button type="submit" class="btn-gold w-full px-8 py-4 rounded-xl text-lg font-bold mt-4">
+    Send My Audit Request →
+  </button>
+
+  <p class="text-center text-xs text-slate-600 mt-4">I'll reply within 4 business hours with 3 time options + a calendar invite.</p>
+</form>
+</div>
+
+<footer class="border-t border-slate-200 mt-16 pt-8 text-center">
+  <p class="text-sm text-slate-600">© 2026 OpsHeyday.</p>
+  <p class="text-xs text-slate-600 mt-3">
+    <a href="/" class="text-blue-600 hover:underline">Home</a> ·
+    <a class='text-blue-600 hover:underline' href='/about'>About</a> ·
+    <a class='text-blue-600 hover:underline' href='/blog'>Blog</a> ·
+    <a class='text-blue-600 hover:underline' href='/agreement'>Sprint Agreement</a> ·
+    <a class='text-blue-600 hover:underline' href='/terms'>Terms</a> ·
+    <a class='text-blue-600 hover:underline' href='/privacy'>Privacy</a>
+  </p>
+</footer>
+
+</div>
+</body>
+</html>
