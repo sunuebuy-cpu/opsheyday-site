@@ -10,170 +10,436 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,800&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
 <style>
-  body { font-family: 'Inter', system-ui, sans-serif; background: linear-gradient(to bottom, #fafaf7 0%, #f5f3ee 100%); color: #1a2332; -webkit-font-smoothing: antialiased; min-height: 100vh; }
-  .serif { font-family: 'Fraunces', Georgia, serif; }
-  h1, h2 { color: #0a1628; font-family: 'Fraunces', Georgia, serif; }
-  .gold-text { background: linear-gradient(135deg, #b8860b 0%, #9c7505 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-  .btn-gold { background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%); color: #fff; transition: all 0.3s ease; box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3); }
-  .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(212, 175, 55, 0.5); }
-  input, select, textarea { background: #ffffff; border: 1px solid #cbd5e1; border-radius: 0.5rem; padding: 0.75rem 1rem; width: 100%; font-size: 0.95rem; color: #0a1628; transition: all 0.2s; }
-  input:focus, select:focus, textarea:focus { outline: none; border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1); }
-  label { display: block; font-size: 0.875rem; font-weight: 600; color: #1a2332; margin-bottom: 0.4rem; }
-  .field { margin-bottom: 1.25rem; }
-  .form-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 1.25rem; box-shadow: 0 4px 24px rgba(15, 23, 42, 0.06); }
-  .card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 1.25rem; box-shadow: 0 4px 24px rgba(15, 23, 42, 0.06); }
+  :root{
+    --navy:#0a1628; --ink:#1a2332; --muted:#475569; --cream:#fafaf7; --cream2:#f5f3ee;
+    --gold:#d4af37; --gold-dark:#b8860b; --gold-deep:#9c7505;
+    --line:#e2e8f0; --blue:#2563eb; --blue-dark:#1d4ed8;
+    --serif:'Fraunces', Georgia, serif; --sans:'Inter', system-ui, -apple-system, sans-serif;
+  }
+  *{box-sizing:border-box}
+  .hidden{display:none}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--sans);background:linear-gradient(to bottom,var(--cream) 0%,var(--cream2) 100%);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.6}
+  a{color:var(--blue)}
+  h1,h2,h3{font-family:var(--serif);color:var(--navy);line-height:1.15;margin:0 0 .5em}
+  p{margin:0 0 1em}
+  .wrap{max-width:1024px;margin:0 auto;padding:0 20px}
+  .gold-text{background:linear-gradient(135deg,var(--gold) 0%,var(--gold-deep) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:var(--gold-dark)}
+  .eyebrow{font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:#1d4ed8;font-weight:700;margin:0 0 12px}
+
+  /* Header */
+  header.site{padding:20px 0 0}
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--navy)}
+  .brand-mark{width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,#3b82f6,#1d4ed8);display:flex;align-items:center;justify-content:center;flex:none}
+  .brand-mark svg{width:20px;height:20px}
+  .brand-name{font-weight:800;font-size:1.15rem;letter-spacing:-.02em}
+  nav.links{display:flex;gap:24px;font-size:.95rem}
+  nav.links a{color:var(--muted);text-decoration:none;font-weight:500}
+  nav.links a:hover{color:var(--navy)}
+
+  /* Hero */
+  .hero{text-align:center;padding:56px 0 44px}
+  .hero h1{font-size:clamp(2.2rem,7vw,3.4rem);font-weight:700;margin:0 0 18px}
+  .hero p.lede{font-size:1.15rem;color:var(--muted);max-width:640px;margin:0 auto 28px}
+  .hero-note{font-size:.92rem;color:var(--muted);margin:20px auto 0;max-width:560px}
+  .btn{display:inline-block;background:linear-gradient(135deg,var(--gold) 0%,var(--gold-dark) 100%);color:#fff;text-decoration:none;font-weight:700;font-size:1.05rem;padding:15px 32px;border-radius:12px;border:0;cursor:pointer;font-family:var(--sans);box-shadow:0 4px 20px rgba(212,175,55,.35)}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(212,175,55,.45)}
+
+  /* Trust strip */
+  .trust{background:var(--navy);padding:18px 0}
+  .trust-list{display:flex;gap:12px 32px;flex-wrap:wrap;justify-content:center;list-style:none;margin:0;padding:0 20px;color:#e2e8f0;font-size:.98rem;font-weight:500}
+  .trust-list li::before{content:"\2713  ";color:var(--gold);font-weight:700}
+
+  /* Sections */
+  .section{padding:56px 0}
+  .section-head{max-width:640px;margin:0 auto 36px;text-align:center}
+  .section-head h2{font-size:clamp(1.6rem,4.5vw,2.2rem)}
+  .section-head p{color:var(--muted);font-size:1.05rem}
+  .card{background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 4px 24px rgba(15,23,42,.06)}
+
+  /* Phone demo */
+  .demo{display:grid;grid-template-columns:1fr;gap:28px;align-items:center;max-width:860px;margin:0 auto}
+  .demo-copy h2{font-size:clamp(1.6rem,4.5vw,2.2rem)}
+  .demo-copy p{color:var(--muted);font-size:1.05rem}
+  .phone{width:340px;max-width:100%;margin:0 auto;background:#0f172a;border-radius:36px;padding:12px;box-shadow:0 16px 40px rgba(15,23,42,.25)}
+  .demo-seq{text-align:center;font-size:.92rem;font-weight:700;color:var(--navy);margin:0 0 14px}
+  .phone-screen{background:#f1f5f9;border-radius:26px;padding:18px 14px 20px;min-height:380px}
+  .phone-top{text-align:center;font-size:.8rem;font-weight:700;color:var(--navy);margin-bottom:4px}
+  .phone-sub{text-align:center;font-size:.72rem;color:#64748b;margin-bottom:16px}
+  .missed{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:.85rem;font-weight:600;color:#b91c1c;margin-bottom:14px}
+  .missed .dot{width:9px;height:9px;border-radius:50%;background:#dc2626;flex:none}
+  .bubble{max-width:85%;padding:10px 13px;border-radius:16px;font-size:.95rem;line-height:1.45;margin-bottom:10px}
+  .bubble.in{background:#fff;border:1px solid var(--line);border-bottom-left-radius:4px;margin-right:auto;color:var(--ink)}
+  .bubble.out{background:var(--navy);color:#fff;border-bottom-right-radius:4px;margin-left:auto}
+  .bubble-time{display:block;font-size:.68rem;opacity:.65;margin-top:4px}
+  .booked{display:flex;align-items:center;justify-content:center;gap:8px;background:#dcfce7;color:#166534;border-radius:999px;padding:9px 14px;font-size:.88rem;font-weight:700;margin-top:16px}
+  .demo-caption{text-align:center;font-size:.85rem;color:var(--muted);margin-top:20px}
+
+  /* Worked example */
+  .example{max-width:760px;margin:0 auto;padding:36px 34px}
+  .example h2{font-size:clamp(1.5rem,4vw,1.9rem);text-align:center}
+  .example .nums{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:28px 0 20px;text-align:center}
+  .example .num b{display:block;font-family:var(--serif);font-size:clamp(1.6rem,5vw,2.2rem);color:var(--navy);line-height:1.1}
+  .example .num span{font-size:.88rem;color:var(--muted)}
+  .example .num{border-left:3px solid var(--gold);padding-left:14px;text-align:left}
+  .example p{color:var(--muted)}
+  .example .label-note{font-size:.88rem;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;margin-bottom:0}
+
+  /* Steps */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .step{padding:30px 26px}
+  .step-n{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:1.35rem;font-weight:700;margin-bottom:16px}
+  .step h3{font-size:1.2rem;margin:0 0 8px}
+  .step p{color:var(--muted);margin:0;font-size:.97rem}
+
+  /* Who it is for */
+  .whofor{max-width:760px;margin:0 auto;padding:36px 34px}
+  .whofor h2{font-size:clamp(1.5rem,4vw,1.9rem)}
+  .whofor p{color:var(--muted)}
+  .cities{display:flex;gap:10px;flex-wrap:wrap;list-style:none;margin:18px 0 0;padding:0}
+  .cities li{background:var(--cream2);border:1px solid var(--line);border-radius:999px;padding:7px 15px;font-weight:600;font-size:.92rem;color:var(--navy)}
+
+  /* Service types */
+  .types-label{font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-deep);margin:20px 0 10px}
+  .types{display:grid;grid-template-columns:1fr 1fr;gap:10px;list-style:none;margin:0;padding:0}
+  .types li{background:var(--cream2);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+  .types li strong{display:block;color:var(--navy);font-size:1rem;margin-bottom:2px}
+  .types li span{font-size:.88rem;color:var(--muted);line-height:1.4}
+
+  /* Pricing */
+  .pricing{background:var(--navy);border-radius:20px;padding:40px 36px;color:#fff;max-width:760px;margin:0 auto;box-shadow:0 16px 40px rgba(10,22,40,.25)}
+  .pricing h2{color:#fff;font-size:clamp(1.5rem,4vw,1.9rem);text-align:center}
+  .pricing .price-line{text-align:center;font-size:1.1rem;color:#e2e8f0;margin-bottom:8px}
+  .pricing .price-line strong{color:#fff}
+  .pricing .founding{display:block;text-align:center;font-size:.9rem;color:var(--gold);font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:20px}
+  .pricing ul{list-style:none;margin:0 0 8px;padding:0;max-width:520px;margin-left:auto;margin-right:auto}
+  .pricing li{padding:7px 0 7px 28px;position:relative;color:#e2e8f0;font-size:.98rem}
+  .pricing li::before{content:"\2713";position:absolute;left:0;color:var(--gold);font-weight:700}
+  .pricing .live-note{text-align:center;color:#cbd5e1;font-size:.95rem;margin:20px 0 0}
+
+  /* FAQ */
+  .faq-list{max-width:760px;margin:0 auto}
+  details{border:1px solid var(--line);border-radius:14px;background:#fff;margin-bottom:12px;padding:18px 22px}
+  summary{font-family:var(--serif);font-size:1.12rem;font-weight:700;color:var(--navy);cursor:pointer}
+  details p{color:var(--muted);margin:10px 0 0;font-size:.97rem}
+
+  /* Form */
+  .form-card{max-width:680px;margin:0 auto;padding:36px 32px}
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+  .field.full{grid-column:1/-1}
+  .field label{font-weight:600;font-size:.9rem;color:var(--navy)}
+  .field input,.field select{font-family:var(--sans);font-size:1rem;padding:12px 14px;border:1px solid #cbd5e1;border-radius:10px;background:#fff;color:var(--ink);width:100%}
+  .field input:focus,.field select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.12)}
+  .form-card .btn{width:100%;text-align:center;margin-top:8px}
+  .form-note{text-align:center;font-size:.85rem;color:var(--muted);margin:16px 0 0}
+
+  /* Footer */
+  footer.site{border-top:1px solid var(--line);margin-top:64px;padding:32px 0 28px;text-align:center}
+  footer.site p{font-size:.88rem;color:var(--muted);margin:0 0 10px}
+  footer.site .foot-links{font-size:.85rem}
+  footer.site .foot-links a{color:var(--blue);text-decoration:none}
+  footer.site .foot-links a:hover{text-decoration:underline}
+  footer.site .powered{font-size:.8rem;margin-top:18px}
+
+  /* Sticky mobile CTA */
+  .sticky-cta{display:none}
+  @media (min-width:720px){
+    .demo{grid-template-columns:1fr 380px}
+  }
+  @media (max-width:719px){
+    .demo-phone{order:-1}
+  }
+  @media (max-width:860px){
+    .steps{grid-template-columns:1fr}
+  }
+  @media (max-width:560px){
+    .form-grid{grid-template-columns:1fr}
+    .example .nums{grid-template-columns:1fr;gap:12px}
+    .example,.whofor,.pricing{padding:28px 22px}
+    .form-card{padding:28px 20px}
+    body{padding-bottom:72px}
+    .sticky-cta{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:60;background:var(--navy);border-top:1px solid rgba(255,255,255,.18);padding:10px 14px calc(10px + env(safe-area-inset-bottom));align-items:center;justify-content:center}
+    .sticky-cta .btn{flex:1;text-align:center;padding:13px 18px;font-size:1rem;margin:0}
+    nav.links{gap:16px}
+  }
 </style>
 </head>
-<body class="py-12 px-6">
+<body>
 
-<nav class="max-w-5xl mx-auto mb-10 flex items-center justify-between">
-  <a href="/" class="flex items-center gap-2">
-    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center">
-      <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+<header class="site">
+  <div class="wrap">
+    <div class="nav">
+      <a class="brand" href="/">
+        <span class="brand-mark" aria-hidden="true">
+          <svg fill="none" stroke="#fff" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </span>
+        <span class="brand-name">OpsHeyday</span>
+      </a>
+      <nav class="links" aria-label="Main">
+        <a href="/services">Services</a>
+        <a href="/">Home</a>
+      </nav>
     </div>
-    <span class="font-bold text-lg tracking-tight text-[#0a1628]">OpsHeyday</span>
-  </a>
-  <div class="flex items-center gap-6 text-sm">
-    <a href="/services" class="text-slate-600 hover:text-[#0a1628] transition">Services</a>
-    <a href="/" class="text-slate-600 hover:text-[#0a1628] transition">← Back to OpsHeyday</a>
   </div>
-</nav>
-
-<div class="max-w-5xl mx-auto">
-
-<header class="text-center mb-12 max-w-3xl mx-auto">
-  <p class="text-xs uppercase tracking-[0.2em] text-blue-700 mb-3">A second service from OpsHeyday — for local service businesses</p>
-  <h1 class="serif text-4xl lg:text-5xl font-bold leading-[1.05] mb-5">Your next customer called at 8:47pm. <span class="gold-text">Did anyone answer?</span></h1>
-  <p class="text-lg text-slate-700 leading-relaxed">Never Miss a Lead is missed-call text-back and AI booking for HVAC, plumbing, dentists and med spas in Dallas–Fort Worth. When a call goes unanswered, we text back in seconds and book the job — 24/7, including after hours. Live in 5 days.</p>
-  <p class="text-sm text-slate-600 mt-4">This is a separate service from our personal-injury intake for law firms. If you run a PI firm, <a href="/" class="text-blue-600 hover:underline">that service is here</a>.</p>
 </header>
 
-<div class="card p-8 lg:p-10 mb-10 max-w-3xl mx-auto">
-  <h2 class="serif text-2xl font-bold mb-3">What one missed call can cost — a worked example</h2>
-  <p class="text-slate-700 leading-relaxed">Miss 3 calls a week, and 1 in 3 of those callers would have booked: that is about 4 bookings lost a month. At $500 a job, that is about $2,000 a month. This is a labelled example, not a measured average — your number depends on your call volume and what one job is worth to you. We map your exact number on the free audit.</p>
-</div>
-
-<div class="grid md:grid-cols-3 gap-6 mb-10">
-  <div class="card p-8">
-    <h2 class="serif text-xl font-bold mb-3">1. Missed-call text-back</h2>
-    <p class="text-slate-700 leading-relaxed">A call you miss gets an instant text back — before the caller dials your competitor. No voicemail black hole.</p>
-  </div>
-  <div class="card p-8">
-    <h2 class="serif text-xl font-bold mb-3">2. AI booking, 24/7</h2>
-    <p class="text-slate-700 leading-relaxed">The AI answers after hours, qualifies the job, and books it on your calendar. Emergency calls, evenings, weekends, holidays.</p>
-  </div>
-  <div class="card p-8">
-    <h2 class="serif text-xl font-bold mb-3">3. Follow-up &amp; replies</h2>
-    <p class="text-slate-700 leading-relaxed">Automatic follow-up on unbooked callers, plus Facebook and Instagram DM replies. Your Google Business Profile fix-up is available as an add-on.</p>
-  </div>
-</div>
-
-<div class="grid md:grid-cols-2 gap-6 mb-10">
-  <div class="card p-8">
-    <h2 class="serif text-2xl font-bold mb-4">Founding pricing</h2>
-    <p class="text-slate-700 leading-relaxed mb-3"><strong>$750 setup</strong> for the first 2 founding clients only, in exchange for a testimonial. Then <strong>$1,500 setup + $297/month</strong>.</p>
-    <p class="text-slate-700 leading-relaxed">Live in 5 days from sign-up. Add-ons: Google Business Profile fix $500 one-time, automatic review requests $297 setup, extra DM channels $200/month.</p>
-  </div>
-  <div class="card p-8">
-    <h2 class="serif text-2xl font-bold mb-4">Who it is for</h2>
-    <p class="text-slate-700 leading-relaxed">HVAC, plumbing, dentists and med spas in Dallas–Fort Worth — Plano, McKinney, Frisco, Garland, Grand Prairie, Irving, Dallas and Fort Worth. Built for owners who are the decision-maker and whose after-hours calls currently go to voicemail.</p>
-  </div>
-</div>
-
-<div class="max-w-2xl mx-auto">
-<header class="text-center mb-8">
-  <p class="text-xs uppercase tracking-[0.2em] text-blue-700 mb-3">Free 15-min missed-call audit</p>
-  <h2 class="serif text-3xl lg:text-4xl font-bold leading-[1.05] mb-4">Find out how many bookings <span class="gold-text">you are losing after hours.</span></h2>
-  <p class="text-slate-700 leading-relaxed">Three questions, fifteen minutes. We will show you your missed-call number — even if we never work together.</p>
-</header>
-
-<div class="form-card p-8 lg:p-10">
-<form name="never-miss-a-lead-audit" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="/thanks.html">
-  <input type="hidden" name="form-name" value="never-miss-a-lead-audit" />
-  <p class="hidden"><label>Don't fill this out: <input name="bot-field" /></label></p>
-
-  <div class="grid sm:grid-cols-2 gap-4">
-    <div class="field">
-      <label for="name">Your name *</label>
-      <input type="text" id="name" name="name" required placeholder="Your name" />
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Never Miss a Lead</p>
+      <h1>Your next customer called at 8:47pm. <span class="gold-text">Did anyone answer?</span></h1>
+      <p class="lede">We offer missed-call text-back and AI booking for your HVAC, plumbing, dental or med spa business. When a customer calls and nobody answers, our AI texts them back instantly, answers their questions and books them in — so you never lose the lead. 24/7 after-hours cover, live in 5 days.</p>
+      <a class="btn" href="#audit">Book a free missed-call audit</a>
+      <p class="hero-note">This is a separate service from our personal-injury intake for law firms. If you run a PI firm, <a href="/">that service is here</a>.</p>
     </div>
-    <div class="field">
-      <label for="business">Business name *</label>
-      <input type="text" id="business" name="business" required placeholder="Your business" />
+  </section>
+
+  <!-- TRUST STRIP -->
+  <section class="trust" aria-label="Why choose Never Miss a Lead">
+    <ul class="trust-list">
+      <li>Free 15-minute audit</li>
+      <li>Live in 5 days</li>
+      <li>24/7 after-hours cover</li>
+      <li>Your price in writing</li>
+    </ul>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">The leak</p>
+        <h2>You&rsquo;re not losing customers to better work. You&rsquo;re losing them at 8:47pm.</h2>
+        <p>The call rings out. Voicemail picks up. The caller dials the next business on Google &mdash; and you never even know they existed. No message, no name, no second chance.</p>
+        <p>It happens after hours, at lunch, on weekends, while you&rsquo;re on another job. The customer doesn&rsquo;t wait for you to call back on Monday. They book with whoever answers first.</p>
+      </div>
+      <div class="card example">
+        <h2>What one missed call can cost &mdash; a worked example</h2>
+        <div class="nums">
+          <div class="num"><b>3 calls</b><span>missed a week</span></div>
+          <div class="num"><b>~4 bookings</b><span>lost a month</span></div>
+          <div class="num"><b>~$2,000</b><span>a month, at $500 a job</span></div>
+        </div>
+        <p>Miss 3 calls a week, and 1 in 3 of those callers would have booked: that is about 4 bookings lost a month. At $500 a job, that is about $2,000 a month.</p>
+        <p class="label-note">This is a labelled example, not a measured average &mdash; your number depends on your call volume and what one job is worth to you. We map your number on the free audit.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <div class="grid sm:grid-cols-2 gap-4">
-    <div class="field">
-      <label for="email">Email *</label>
-      <input type="email" id="email" name="email" required placeholder="you@yourbusiness.com" />
+  <!-- HOW IT WORKS -->
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">How it works</p>
+        <h2>Three steps between a missed call and a booked job.</h2>
+      </div>
+      <div class="steps">
+        <div class="card step">
+          <div class="step-n">1</div>
+          <h3>Missed-call text-back</h3>
+          <p>A call you miss gets an instant text back — before the caller dials your competitor. No voicemail black hole.</p>
+        </div>
+        <div class="card step">
+          <div class="step-n">2</div>
+          <h3>AI booking, 24/7</h3>
+          <p>The AI answers after hours, qualifies the job, and books it on your calendar. Emergency calls, evenings, weekends, holidays.</p>
+        </div>
+        <div class="card step">
+          <div class="step-n">3</div>
+          <h3>Follow-up &amp; replies</h3>
+          <p>Automatic follow-up on unbooked callers, plus Facebook and Instagram DM replies. Your Google Business Profile fix-up is available as an add-on.</p>
+        </div>
+      </div>
     </div>
-    <div class="field">
-      <label for="phone">Phone *</label>
-      <input type="tel" id="phone" name="phone" required placeholder="(555) 555-5555" />
+  </section>
+
+  <!-- PROOF — THE TEXT THREAD -->
+  <section class="section">
+    <div class="wrap">
+      <div class="demo">
+        <div class="demo-copy">
+          <p class="eyebrow">Proof — the whole story in one picture</p>
+          <h2>A missed call becomes a booked job — while you are still on the last one.</h2>
+          <p>Your customer calls at 8:47pm. You are busy, so the call goes unanswered. Instead of voicemail, they get a text back in seconds — and the booking happens right there in the conversation, before they dial your competitor.</p>
+          <p>No voicemail black hole. No missed emergency call turning into someone else's customer.</p>
+        </div>
+        <div class="demo-phone">
+          <p class="demo-seq">Missed call 8:47 PM &nbsp;→&nbsp; instant text-back &nbsp;→&nbsp; booked tomorrow 9–11am</p>
+          <div class="phone" role="img" aria-label="Example text conversation: a missed call at 8:47pm is answered by text and booked for the next morning">
+            <div class="phone-screen">
+              <p class="phone-top">Your business</p>
+              <p class="phone-sub">Tonight · 8:47 PM</p>
+              <div class="missed"><span class="dot"></span>Missed call — 8:47 PM</div>
+              <div class="bubble out">Hi, this is your business! Sorry we missed your call — how can we help?<span class="bubble-time">8:47 PM</span></div>
+              <div class="bubble in">Hi — my AC just stopped working. Can someone come out tomorrow?<span class="bubble-time">8:48 PM</span></div>
+              <div class="bubble out">Yes — we can come tomorrow between 9 and 11am. Shall I book you in?<span class="bubble-time">8:48 PM</span></div>
+              <div class="bubble in">Yes please.<span class="bubble-time">8:49 PM</span></div>
+              <div class="bubble out">You are booked for tomorrow, 9–11am. We will send a reminder before we come.<span class="bubble-time">8:49 PM</span></div>
+              <div class="booked">✓ Booked — tomorrow 9–11am</div>
+            </div>
+          </div>
+          <p class="demo-caption">Example conversation — not a real customer. It shows how a missed call turns into a booking.</p>
+        </div>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <div class="grid sm:grid-cols-2 gap-4">
-    <div class="field">
-      <label for="business_type">Business type *</label>
-      <select id="business_type" name="business_type" required>
-        <option value="">Select...</option>
-        <option value="hvac">HVAC</option>
-        <option value="plumbing">Plumbing</option>
-        <option value="dentist">Dentist</option>
-        <option value="med-spa">Med spa</option>
-        <option value="other-local-service">Other local service</option>
-      </select>
+  <!-- WHO IT IS FOR -->
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="card whofor">
+        <p class="eyebrow">Who it is for</p>
+        <h2>Built for Dallas–Fort Worth owners who answer the phone themselves.</h2>
+        <p>HVAC, plumbing, dentists and med spas — for owners who are the decision-maker and whose after-hours calls currently go to voicemail.</p>
+        <p class="types-label">Types of service</p>
+        <ul class="types">
+          <li><strong>HVAC</strong><span>Heating, cooling and emergency repair calls</span></li>
+          <li><strong>Plumbing</strong><span>Leaks, blockages and emergency call-outs</span></li>
+          <li><strong>Dentists</strong><span>New patients and appointment requests</span></li>
+          <li><strong>Med spas</strong><span>Bookings and treatment enquiries</span></li>
+        </ul>
+        <p class="types-label">Where — Dallas–Fort Worth</p>
+        <ul class="cities">
+          <li>Plano</li>
+          <li>McKinney</li>
+          <li>Frisco</li>
+          <li>Garland</li>
+          <li>Grand Prairie</li>
+          <li>Irving</li>
+          <li>Dallas</li>
+          <li>Fort Worth</li>
+        </ul>
+      </div>
     </div>
-    <div class="field">
-      <label for="after_hours">Who answers after 5pm? *</label>
-      <select id="after_hours" name="after_hours" required>
-        <option value="">Select...</option>
-        <option value="voicemail">Voicemail</option>
-        <option value="answering-service">Answering service</option>
-        <option value="my-cell">My personal cell</option>
-        <option value="staff">Staff / receptionist</option>
-        <option value="other">Other / Not sure</option>
-      </select>
+  </section>
+
+  <!-- PRICING -->
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="pricing">
+        <p class="eyebrow" style="text-align:center;color:var(--gold)">Founding pricing</p>
+        <h2>Simple pricing, quoted in writing.</h2>
+        <p class="price-line"><strong>$750 setup</strong> for the first 2 founding clients only, in exchange for a testimonial.</p>
+        <p class="price-line">Then <strong>$1,500 setup + $297/month</strong>.</p>
+        <span class="founding">2 founding spots only</span>
+        <ul>
+          <li>Google Business Profile fix — $500 one-time</li>
+          <li>Automatic review requests — $297 setup</li>
+          <li>Extra DM channels — $200/month</li>
+        </ul>
+        <p class="live-note">Live in 5 days from sign-up.</p>
+      </div>
     </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Questions</p>
+        <h2>Before you book your audit</h2>
+      </div>
+      <div class="faq-list">
+        <details>
+          <summary>How does the text-back work?</summary>
+          <p>When a call goes unanswered, the caller gets an instant text back in seconds — instead of voicemail. The conversation qualifies the job and books it on your calendar, 24/7, including after hours.</p>
+        </details>
+        <details>
+          <summary>What happens on the free audit?</summary>
+          <p>Three questions, fifteen minutes. We look at how many calls you miss and what one job is worth to you, and show you your missed-call number — even if we never work together. We reply within 4 business hours with time options for your audit.</p>
+        </details>
+        <details>
+          <summary>Do I need to change my phone system?</summary>
+          <p>We go through how it connects to your current setup on the free audit, before anything is installed — so you know exactly what changes, if anything, before you decide.</p>
+        </details>
+        <details>
+          <summary>What if I already have an answering service?</summary>
+          <p>Bring it to the audit. We look at what your answering service catches and what still slips through, and tell you honestly whether Never Miss a Lead adds anything on top of it.</p>
+        </details>
+        <details>
+          <summary>How fast can we go live?</summary>
+          <p>Live in 5 days from sign-up.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUDIT FORM -->
+  <section class="section" id="audit" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Free 15-min missed-call audit</p>
+        <h2>Find out how many bookings <span class="gold-text">you are losing after hours.</span></h2>
+        <p>Three questions, fifteen minutes. We will show you your missed-call number — even if we never work together.</p>
+      </div>
+      <div class="card form-card">
+        <form name="never-miss-a-lead-audit" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="/thanks.html">
+          <input type="hidden" name="form-name" value="never-miss-a-lead-audit" />
+          <p class="hidden"><label>Don't fill this out: <input name="bot-field" /></label></p>
+          <div class="form-grid">
+            <div class="field">
+              <label for="name">Your name *</label>
+              <input type="text" id="name" name="name" required />
+            </div>
+            <div class="field">
+              <label for="business">Business name *</label>
+              <input type="text" id="business" name="business" required />
+            </div>
+            <div class="field">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+            <div class="field">
+              <label for="phone">Phone *</label>
+              <input type="tel" id="phone" name="phone" required />
+            </div>
+            <div class="field">
+              <label for="business_type">Business type *</label>
+              <select id="business_type" name="business_type" required>
+                <option value="">Select...</option>
+                <option value="hvac">HVAC</option>
+                <option value="plumbing">Plumbing</option>
+                <option value="dentist">Dentist</option>
+                <option value="med-spa">Med spa</option>
+                <option value="other-local-service">Other local service</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="job_value">What is one new job worth to you? *</label>
+              <input type="text" id="job_value" name="job_value" required />
+            </div>
+          </div>
+          <button type="submit" class="btn">Send My Audit Request →</button>
+          <p class="form-note">We will reply within 4 business hours with time options for your audit.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <p>© 2026 OpsHeyday.</p>
+    <p class="foot-links">
+      <a href="/">Home</a> ·
+      <a href="/services">Services</a> ·
+      <a href="/about">About</a> ·
+      <a href="/blog">Blog</a> ·
+      <a href="/agreement">Sprint Agreement</a> ·
+      <a href="/terms">Terms</a> ·
+      <a href="/privacy">Privacy</a>
+    </p>
+    <p class="powered">Powered by <a href="https://darodesign.com">Daro Design</a></p>
   </div>
-
-  <div class="field">
-    <label for="job_value">What is one new job worth to you? *</label>
-    <input type="text" id="job_value" name="job_value" required placeholder="e.g., $450" />
-  </div>
-
-  <div class="field">
-    <label for="preferred_time">Preferred days/times for a 15-min audit *</label>
-    <input type="text" id="preferred_time" name="preferred_time" required placeholder="e.g., weekday mornings, ET" />
-  </div>
-
-  <button type="submit" class="btn-gold w-full px-8 py-4 rounded-xl text-lg font-bold mt-4">
-    Send My Audit Request →
-  </button>
-
-  <p class="text-center text-xs text-slate-600 mt-4">We will reply within 4 business hours with time options for your audit.</p>
-</form>
-</div>
-</div>
-
-<footer class="border-t border-slate-200 mt-16 pt-8 text-center">
-  <p class="text-sm text-slate-600">© 2026 OpsHeyday.</p>
-  <p class="text-xs text-slate-600 mt-3">
-    <a href="/" class="text-blue-600 hover:underline">Home</a> ·
-    <a href="/services" class="text-blue-600 hover:underline">Services</a> ·
-    <a class='text-blue-600 hover:underline' href='/about'>About</a> ·
-    <a class='text-blue-600 hover:underline' href='/blog'>Blog</a> ·
-    <a class='text-blue-600 hover:underline' href='/agreement'>Sprint Agreement</a> ·
-    <a class='text-blue-600 hover:underline' href='/terms'>Terms</a> ·
-    <a class='text-blue-600 hover:underline' href='/privacy'>Privacy</a>
-  </p>
-<p class="text-xs text-slate-600 text-center mt-6">Powered by <a class="text-blue-600 hover:underline" href="https://darodesign.com">Daro Design</a></p>
 </footer>
 
+<div class="sticky-cta" role="navigation" aria-label="Book a free missed-call audit">
+  <a class="btn" href="#audit">Free missed-call audit</a>
 </div>
+
 </body>
 </html>

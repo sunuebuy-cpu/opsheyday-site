@@ -6,12 +6,14 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="apple-touch-icon" href="/favicon.svg" />
 <title>Book Your Free Leak Audit | OpsHeyday</title>
-<meta name="description" content="30-minute free leak audit for personal-injury firms. We'll calculate your exact intake leak on a screen-share. No pitch." />
+<meta name="description" content="30-minute free leak audit for personal-injury firms. We'll calculate your intake leak on a screen-share. No pitch." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,800&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
+  *, *::before, *::after { box-sizing: border-box; }
+  .hidden { display: none; }
   body { font-family: 'Inter', system-ui, sans-serif; background: linear-gradient(to bottom, #fafaf7 0%, #f5f3ee 100%); color: #1a2332; -webkit-font-smoothing: antialiased; min-height: 100vh; }
   .serif { font-family: 'Fraunces', Georgia, serif; }
   h1, h2 { color: #0a1628; font-family: 'Fraunces', Georgia, serif; }
@@ -35,15 +37,18 @@
     </div>
     <span class="font-bold text-lg tracking-tight text-[#0a1628]">OpsHeyday</span>
   </a>
-  <a href="/" class="text-sm text-slate-600 hover:text-[#0a1628] transition">← Back</a>
+  <div class="flex items-center gap-5">
+    <a href="/services" class="text-sm font-semibold text-[#0a1628] hover:text-[#0a1628] transition">Services</a>
+    <a href="/" class="text-sm text-slate-600 hover:text-[#0a1628] transition">← Back</a>
+  </div>
 </nav>
 
 <div class="max-w-2xl mx-auto">
 
 <header class="text-center mb-10">
   <p class="text-xs uppercase tracking-[0.2em] text-blue-700 mb-3">Free 30-Min Leak Audit</p>
-  <h1 class="serif text-4xl lg:text-5xl font-bold leading-[1.05] mb-5">Calculate your firm's <span class="gold-text">exact intake leak.</span></h1>
-  <p class="text-lg text-slate-700 leading-relaxed max-w-xl mx-auto">Tell me a few things about your firm. I'll send back a 30-minute screen-share with your real ROI number — even if we never work together.</p>
+  <h1 class="serif text-4xl lg:text-5xl font-bold leading-[1.05] mb-5">Calculate your firm's <span class="gold-text">intake leak.</span></h1>
+  <p class="text-lg text-slate-700 leading-relaxed max-w-xl mx-auto">Tell us a few things about your firm. We'll send back a 30-minute screen-share with your ROI number — even if we never work together.</p>
 </header>
 
 <div class="form-card p-8 lg:p-10">
@@ -54,7 +59,7 @@
   <div class="grid sm:grid-cols-2 gap-4">
     <div class="field">
       <label for="name">Your name *</label>
-      <input type="text" id="name" name="name" required placeholder="the OpsHeyday team" />
+      <input type="text" id="name" name="name" required placeholder="Your full name" />
     </div>
     <div class="field">
       <label for="firm">Firm name *</label>
@@ -124,7 +129,7 @@
 
   <div class="field">
     <label for="biggest_pain">What's the #1 thing you wish your intake did better?</label>
-    <textarea id="biggest_pain" name="biggest_pain" rows="3" placeholder="Optional — but answer here and I'll prep specifically for it before the call."></textarea>
+    <textarea id="biggest_pain" name="biggest_pain" rows="3" placeholder="Optional — but answer here and we'll prep specifically for it before the call."></textarea>
   </div>
 
   <div class="field">
@@ -136,13 +141,14 @@
     Send My Audit Request →
   </button>
 
-  <p class="text-center text-xs text-slate-600 mt-4">I'll reply within 4 business hours with 3 time options + a calendar invite.</p>
+  <p class="text-center text-xs text-slate-600 mt-4">We'll reply within 4 business hours with 3 time options and a calendar invite.</p>
 </form>
 </div>
 
 <footer class="border-t border-slate-200 mt-16 pt-8 text-center">
   <p class="text-sm text-slate-600">© 2026 OpsHeyday.</p>
   <p class="text-xs text-slate-600 mt-3">
+    <a class='text-blue-600 hover:underline' href='/services'>Services</a> ·
     <a href="/" class="text-blue-600 hover:underline">Home</a> ·
     <a class='text-blue-600 hover:underline' href='/about'>About</a> ·
     <a class='text-blue-600 hover:underline' href='/blog'>Blog</a> ·
